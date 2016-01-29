@@ -1,0 +1,18 @@
+@import 'settings'
+
+.btn-group
+    display flex
+    if btn-border-width > 0
+        margin-left btn-border-width
+    font-size 0
+
+    +below(screen-sm)
+        flex-direction column
+
+    if btn-border-width > 0
+        &__item
+            margin-left -(btn-border-width)
+
+.btn-group--expanded
+    &__item
+        flex-grow 1

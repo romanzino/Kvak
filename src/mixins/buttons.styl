@@ -1,0 +1,23 @@
+@import 'settings'
+
+//We should use semicolons here, otherwise will be stylus parsing error
+
+create-button-height(options)
+    height: options['height']
+    padding-left: options['padding-horizontal']
+    padding-right: options['padding-horizontal']
+    line-height: options['height'] - (btn-border-width * 2)
+    font-size: options['font-size']
+
+
+create-button-style(options)
+    background-color: options['background-color']
+    color: options['color']
+    if btn-border-width > 0
+        border: btn-border-width solid options['border-color']
+
+    &:hover, &:focus
+        background-color: darken(options['background-color'], 10%)
+
+    &:active, &--active
+        background-color: darken(options['background-color'], 15%)

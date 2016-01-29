@@ -1,0 +1,10 @@
+.wrapper {
+  padding: 25px 20px;
+}
+.main-header {
+  border-bottom: 1px solid #ccc;
+}
+.main-footer {
+  padding: 15px;
+  background-color: #ccc;
+}

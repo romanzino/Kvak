@@ -1,0 +1,62 @@
+@import 'settings'
+@import 'mixins/buttons'
+
+/*
+    BUTTONS
+*/
+
+.btn
+    display inline-block
+    max-width 100%
+    vertical-align middle
+    padding-top 0
+    padding-bottom 0
+    white-space nowrap
+    overflow hidden
+    text-overflow ellipsis
+    text-decoration none
+    background-color transparent
+    color #000
+    border 0
+    cursor pointer
+    if transition-enabled
+        transition background-color transition-time-md, color transition-time-md, border-color transition-time-md
+
+
+/*
+    BUTTONS SIZES
+*/
+
+//Generates input height
+for key, value in btn-height
+
+    if value['enabled']
+        .btn--{key}-h
+            create-button-height(value)
+
+/*
+    BUTTONS STYLES
+*/
+
+//Generates buttons styles
+for key, value in btn-styles
+
+    if value['enabled']
+        .btn--{key}
+            create-button-style(value)
+
+
+/*
+    BUTTONS HELP CLASSES
+*/
+
+
+.btn--expanded
+    width 100%
+
+.btn--condensed
+    padding-left 0
+    padding-right 0
+
+.btn--underline
+    text-decoration underline

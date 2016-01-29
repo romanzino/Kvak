@@ -1,0 +1,62 @@
+@import 'settings'
+@import 'mixins/inputs'
+
+/**
+    INPUTS
+**/
+
+.input
+    display block
+    width 100%
+    padding-top 0
+    padding-bottom 0
+    background-color transparent
+    border input-border-width > 0 ? (input-border-width solid input-border-color) : 0
+    cursor pointer
+    if transition-enabled
+        transition background-color transition-time-md, color transition-time-md, border-color transition-time-md
+
+//Sizes
+
+//Generates input height
+for key, value in input-height
+
+    if value['enabled']
+        .input--{key}-h
+            create-input-height(value)
+
+//Inputs help classes
+
+
+/**
+    TEXTAREAS
+**/
+
+.textarea
+    display block
+    width 100%
+    background-color transparent
+    border textarea-border-width > 0 ? (textarea-border-width solid textarea-border-color) : 0
+    cursor pointer
+    if transition-enabled
+        transition background-color transition-time-md, color transition-time-md, border-color transition-time-md
+
+//Sizes
+
+//Generates textareas height
+for key, value in textarea-height
+
+    if value['enabled']
+        .textarea--{key}-h
+            create-textarea-height(value)
+
+//Textares help classes
+
+.textarea--no-resize
+    resize none
+
+.textarea--horizontal-resize
+    resize horizontal
+
+.textarea--vertical-resize
+    resize vertical

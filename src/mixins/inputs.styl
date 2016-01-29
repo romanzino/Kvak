@@ -1,0 +1,26 @@
+@import 'settings'
+
+//We should use semicolons here, otherwise will be stylus parsing error
+
+create-input-height(options)
+    height: options['height']
+    padding: 0 options['padding-horizontal']
+    line-height: options['height'] - (input-border-width * 2)
+    font-size: options['font-size']
+
+create-input-style(options)
+    background-color: options['background-color']
+    color: options['color']
+    if border-width > 0
+        border input-border-width solid input-border-color
+
+        &:hover, &:focus
+            border input-border-width solid darken(input-border-color, 10%)
+
+        &:active
+            border input-border-width solid darken(input-border-color, 15%)
+
+create-textarea-height(options)
+    height: options['height']
+    padding: options['padding-vertical'] options['padding-horizontal']
+    font-size: options['font-size']
