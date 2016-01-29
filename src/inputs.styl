@@ -60,3 +60,43 @@ for key, value in textarea-height
 
 .textarea--vertical-resize
     resize vertical
+
+
+.select
+    display block
+    width 100%
+    border input-border-width > 0 ? (input-border-width solid input-border-color) : 0
+    cursor pointer
+
+
+//Sizes
+
+//Generates select height
+for key, value in input-height
+
+    if value['enabled']
+        .select--{key}-h
+            create-select-height(value)
+
+
+/**
+    CHECKBOX, RADIO
+**/
+
+
+.checkbox, .radio
+    display flex
+    align-items center
+    &__item
+        cursor pointer
+
+
+.checkbox
+    &__item
+        + .checkbox__item
+            padding-left 5px
+
+.radio
+    &__item
+        + .radio__item
+            padding-left 5px

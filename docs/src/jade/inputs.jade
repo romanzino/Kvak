@@ -33,27 +33,27 @@ block main
     h4 Extra small height textarea
 
     p
-        textarea.textarea.textarea--xsm-h(type='text', placeholder="Lorem ispum placeholder")
+        textarea.textarea.textarea--xsm-h(placeholder="Lorem ispum placeholder")
 
     h4 Small height textarea
 
     p
-        textarea.textarea.textarea--sm-h(type='text', placeholder="Lorem ispum placeholder")
+        textarea.textarea.textarea--sm-h(placeholder="Lorem ispum placeholder")
 
     h4 Medium height textarea
 
     p
-        textarea.textarea.textarea--md-h(type='text', placeholder="Lorem ispum placeholder")
+        textarea.textarea.textarea--md-h(placeholder="Lorem ispum placeholder")
 
     h4 Large height textarea
 
     p
-        textarea.textarea.textarea--lg-h(type='text', placeholder="Lorem ispum placeholder")
+        textarea.textarea.textarea--lg-h(placeholder="Lorem ispum placeholder")
 
     h4 Extra large height textarea
 
     p
-        textarea.textarea.textarea--xlg-h(type='text', placeholder="Lorem ispum placeholder")
+        textarea.textarea.textarea--xlg-h(placeholder="Lorem ispum placeholder")
 
     h4 Textarea horizontal
 
@@ -71,3 +71,40 @@ block main
 
     p
         textarea.textarea.textarea--md-h.textarea--md-w.textarea--no-resize
+
+
+    h2 Select
+
+    p
+        select.select.select--md-h
+            option One
+            option Two
+            option ...
+
+    h2 Checkbox
+
+    div
+        .checkbox
+            label
+                input.checkbox__item(type="checkbox")
+                span.checkbox__item Some another text here
+
+    div
+        .checkbox
+            label
+                input.checkbox__item(type="checkbox")
+                span.checkbox__item Some text here
+
+    h2 Radio
+
+    div
+        .radio
+            label
+                input.radio__item(type="radio", name="testRadio")
+                span.radio__item Some text here
+
+    div
+        .radio
+            label
+                input.radio__item(type="radio", name="testRadio")
+                span.radio__item Some another text here
