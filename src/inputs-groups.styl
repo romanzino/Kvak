@@ -1,0 +1,12 @@
+@import 'settings'
+@import 'mixins/inputs'
+
+.checkboxes-horizontal, .radios-horizontal
+    +above(screen-sm)
+        display flex
+    &__item
+        ^[1] + &
+            +above(screen-sm)
+                margin-left 0.625rem
+            +below(screen-sm)
+                margin-top 0.625rem

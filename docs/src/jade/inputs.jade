@@ -83,28 +83,52 @@ block main
 
     h2 Checkbox
 
-    div
-        .checkbox
-            label.checkbox__wrapper
-                input.checkbox__control(type="checkbox")
-                span.checkbox__description Some another text here
+    .checkbox-single
+        label.checkbox
+            input.checkbox__control(type="checkbox")
+            span.checkbox__description Some another text here
 
-    div
-        .checkbox
-            label.checkbox__wrapper
+    .checkbox-single
+        label.checkbox
+            input.checkbox__control(type="checkbox")
+            span.checkbox__description Some text here
+
+    h2 Horizontal group of checkboxes
+
+    .checkboxes-horizontal
+        .checkboxes-horizontal__item
+            label.checkbox
                 input.checkbox__control(type="checkbox")
-                span.checkbox__description Some text here
+                span.checkbox__description Group item 1
+
+        .checkboxes-horizontal__item
+            label.checkbox
+                input.checkbox__control(type="checkbox")
+                span.checkbox__description Group item 2
+
 
     h2 Radio
 
-    div
-        .radio
-            label.radio__wrapper
-                input.radio__control(type="radio", name="testRadio")
-                span.radio__description Some text here
+    div.radio-single
+        label.radio
+            input.radio__control(type="radio", name="testRadio")
+            span.radio__description Some text here
 
-    div
-        .radio
-            label.radio__wrapper
-                input.radio__control(type="radio", name="testRadio")
-                span.radio__description Some another text here
+    div.radio-single
+        label.radio
+            input.radio__control(type="radio", name="testRadio")
+            span.radio__description Some another text here
+
+
+    h2 Horizontal group of radios
+
+    .radios-horizontal
+        .radios-horizontal__item
+            label.checkbox
+                input.radio__control(type="radio", name="testRadioHorizontal")
+                span.radio__description Group item 1
+
+        .radios-horizontal__item
+            label.checkbox
+                input.radio__control(type="radio", name="testRadioHorizontal")
+                span.radio__description Group item 2

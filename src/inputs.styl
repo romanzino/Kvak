@@ -85,25 +85,30 @@ for key, value in input-height
 
 
 .checkbox, .radio
-    &__wrapper 
-        position relative
+    position relative
+    align-items center
+    +above(screen-sm)
+        display inline-flex
+    +below(screen-sm)
         display flex
-        align-items center
-    &__control
+    &:after
+        content "\A "
+        display inline-block
+        line-height 0
+        white-space pre
+    &__control, &__description:after
         position absolute
-        top 0.1875rem
+        width 1rem
+        height 1rem
+        top 0.0625rem
         left 0
-        transform translateY(-50%)
+    &__control
         visibility hidden
     &__description
-        padding-left 1.875rem
+        padding-left 1.625rem
         &:after
-            position absolute
-            top 0.0625rem
-            left 0
-            width 1rem
-            height 1rem
             border 0.0625rem solid input-border-color
+
 .checkbox
     &__description
         &:after
@@ -120,7 +125,7 @@ for key, value in input-height
             + .checkbox__description
                 &:after
                     font-size 1rem
-
+                    
 .radio
     &__description
         &:after
@@ -148,3 +153,7 @@ for key, value in input-height
                 &:before
                     opacity 1
 
+
+.checkbox-single, .radio-single
+    ^[0] + &
+        margin-top 0.3125rem

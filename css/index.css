@@ -549,7 +549,7 @@ html {
   padding-top: 0;
   padding-bottom: 0;
   background-color: transparent;
-  border: 0.0625rem solid #ccc;
+  border: 0.0625rem solid #989494;
   cursor: pointer;
   transition: background-color 250ms, color 250ms, border-color 250ms;
 }
@@ -587,7 +587,7 @@ html {
   display: block;
   width: 100%;
   background-color: transparent;
-  border: 0.0625rem solid #ccc;
+  border: 0.0625rem solid #989494;
   cursor: pointer;
   transition: background-color 250ms, color 250ms, border-color 250ms;
 }
@@ -628,7 +628,7 @@ html {
 .select {
   display: block;
   width: 100%;
-  border: 0.0625rem solid #ccc;
+  border: 0.0625rem solid #989494;
   cursor: pointer;
 }
 .select--xsm-h {
@@ -661,39 +661,58 @@ html {
   line-height: 3rem;
   font-size: 1.25rem;
 }
-.checkbox__wrapper,
-.radio__wrapper {
+.checkbox,
+.radio {
   position: relative;
-  display: flex;
   align-items: center;
+}
+@media only screen and (min-width: 768px) {
+  .checkbox,
+  .radio {
+    display: inline-flex;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .checkbox,
+  .radio {
+    display: flex;
+  }
+}
+.checkbox:after,
+.radio:after {
+  content: "\A ";
+  display: inline-block;
+  line-height: 0;
+  white-space: pre;
+}
+.checkbox__control,
+.radio__control,
+.checkbox__description:after,
+.radio__description:after {
+  position: absolute;
+  width: 1rem;
+  height: 1rem;
+  top: 0.0625rem;
+  left: 0;
 }
 .checkbox__control,
 .radio__control {
-  position: absolute;
-  top: 0.1875rem;
-  left: 0;
-  transform: translateY(-50%);
   visibility: hidden;
 }
 .checkbox__description,
 .radio__description {
-  padding-left: 1.875rem;
+  padding-left: 1.625rem;
 }
 .checkbox__description:after,
 .radio__description:after {
-  position: absolute;
-  top: 0.0625rem;
-  left: 0;
-  width: 1rem;
-  height: 1rem;
-  border: 0.0625rem solid #ccc;
+  border: 0.0625rem solid #989494;
 }
 .checkbox__description:after {
   content: '\2713';
   font-size: 0;
   text-align: center;
   line-height: 1rem;
-  color: #a3a3a3;
+  color: #7a7676;
   transition: font-size 250ms;
 }
 .checkbox__control:checked + .checkbox__description:after {
@@ -712,12 +731,16 @@ html {
   width: 0.6rem;
   height: 0.6rem;
   opacity: 0;
-  background-color: #a3a3a3;
+  background-color: #7a7676;
   border-radius: 100%;
   transition: opacity 250ms;
 }
 .radio__control:checked + .radio__description:before {
   opacity: 1;
+}
+.checkbox-single + .checkbox-single,
+.radio-single + .radio-single {
+  margin-top: 0.3125rem;
 }
 .btn-group {
   display: flex;
@@ -734,4 +757,22 @@ html {
 }
 .btn-group--expanded__item {
   flex-grow: 1;
+}
+@media only screen and (min-width: 768px) {
+  .checkboxes-horizontal,
+  .radios-horizontal {
+    display: flex;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .checkboxes-horizontal__item + .checkboxes-horizontal__item,
+  .radios-horizontal__item + .radios-horizontal__item {
+    margin-left: 0.625rem;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .checkboxes-horizontal__item + .checkboxes-horizontal__item,
+  .radios-horizontal__item + .radios-horizontal__item {
+    margin-top: 0.625rem;
+  }
 }
