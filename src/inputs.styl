@@ -85,18 +85,66 @@ for key, value in input-height
 
 
 .checkbox, .radio
-    display flex
-    align-items center
-    &__item
-        cursor pointer
-
-
+    &__wrapper 
+        position relative
+        display flex
+        align-items center
+    &__control
+        position absolute
+        top 0.1875rem
+        left 0
+        transform translateY(-50%)
+        visibility hidden
+    &__description
+        padding-left 1.875rem
+        &:after
+            position absolute
+            top 0.0625rem
+            left 0
+            width 1rem
+            height 1rem
+            border 0.0625rem solid input-border-color
 .checkbox
-    &__item
-        + .checkbox__item
-            padding-left 5px
+    &__description
+        &:after
+            content '\2713'
+            font-size 0
+            text-align center
+            line-height 1rem
+            color darken(input-border-color, 20%)
+            if transition-enabled
+                transition font-size transition-time-md
+
+    &__control
+        &:checked
+            + .checkbox__description
+                &:after
+                    font-size 1rem
 
 .radio
-    &__item
-        + .radio__item
-            padding-left 5px
+    &__description
+        &:after
+            content ' '
+            border-radius 100%
+            if transition-enabled
+                transition font-size transition-time-md
+
+        &:before
+            content ' '
+            position absolute
+            left 0.25rem
+            top 0.3125rem
+            width 0.6rem
+            height 0.6rem
+            opacity 0
+            background-color darken(input-border-color, 20%)
+            border-radius 100%
+            if transition-enabled
+                transition opacity transition-time-md
+
+    &__control
+        &:checked
+            + .radio__description
+                &:before
+                    opacity 1
+
