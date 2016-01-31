@@ -1,0 +1,14 @@
+@import 'settings'
+
+.breadcrumbs
+    display flex
+
+    &__item
+        &:not(:last-child)
+            margin-right breadcrumbs-item-margin
+            &:after
+                content breadcrumbs-separator
+                margin-left breadcrumbs-item-margin
+
+    &__link, &__current
+        white-space nowrap
