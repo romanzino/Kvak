@@ -594,7 +594,7 @@ html {
 .textarea--xsm-h {
   height: 3.125rem;
   padding: 0.5rem 1rem;
-  font-size: 0.875rem;
+  font-size: 0.75rem;
 }
 .textarea--sm-h {
   height: 4.375rem;
@@ -604,17 +604,17 @@ html {
 .textarea--md-h {
   height: 5.625rem;
   padding: 0.5rem 1rem;
-  font-size: 0.875rem;
+  font-size: 1rem;
 }
 .textarea--lg-h {
   height: 6.875rem;
   padding: 0.5rem 1rem;
-  font-size: 0.875rem;
+  font-size: 1.125rem;
 }
 .textarea--xlg-h {
   height: 8.125rem;
   padding: 0.5rem 1rem;
-  font-size: 0.875rem;
+  font-size: 1.25rem;
 }
 .textarea--no-resize {
   resize: none;
@@ -678,13 +678,6 @@ html {
     display: flex;
   }
 }
-.checkbox:after,
-.radio:after {
-  content: "\A ";
-  display: inline-block;
-  line-height: 0;
-  white-space: pre;
-}
 .checkbox__control,
 .radio__control,
 .checkbox__description:after,
@@ -741,6 +734,13 @@ html {
 .checkbox-single + .checkbox-single,
 .radio-single + .radio-single {
   margin-top: 0.3125rem;
+}
+.form__item {
+  margin-bottom: 0.625rem;
+}
+.form__item--separate {
+  margin-top: 0.9375rem;
+  margin-bottom: 0.9375rem;
 }
 .btn-group {
   display: flex;

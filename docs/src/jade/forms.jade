@@ -1,0 +1,12 @@
+extends chunks/layout.jade
+
+block main    
+    h2 Forms
+
+    form.form
+        .form__item
+            input.input.input--lg-h(type="text", placeholder="Your name")
+        .form__item
+            textarea.textarea.textarea--lg-h(placeholder="Place for your comment")
+        .form__item.form__item--separate
+            button.btn.btn--green.btn--lg-h Send!
