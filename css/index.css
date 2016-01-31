@@ -786,11 +786,11 @@ ol {
   display: flex;
 }
 .breadcrumbs__item:not(:last-child) {
-  margin-right: 0.25rem;
+  margin-right: 0.3125rem;
 }
 .breadcrumbs__item:not(:last-child):after {
-  content: '\00bb';
-  margin-left: 0.25rem;
+  content: '\203A';
+  margin-left: 0.3125rem;
 }
 .breadcrumbs__link,
 .breadcrumbs__current {

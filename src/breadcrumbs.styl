@@ -6,9 +6,10 @@
     &__item
         &:not(:last-child)
             margin-right breadcrumbs-item-margin
-            &:after
-                content breadcrumbs-separator
-                margin-left breadcrumbs-item-margin
+            if breadcrumbs-separator-content
+                &:after
+                    content breadcrumbs-separator-content
+                    margin-left breadcrumbs-item-margin
 
     &__link, &__current
         white-space nowrap
