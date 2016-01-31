@@ -13,9 +13,15 @@
         text-overflow ellipsis
         overflow hidden
         white-space nowrap
+        if nav-underline-disabled
+            text-decoration none
 
 .nav--vertical
     flex-direction column
+
+    &__item
+        ^[1] + &
+            margin-top nav-vertical-item-margin
 
 .nav--horizontal
     flex-direction row

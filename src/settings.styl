@@ -2,27 +2,27 @@
     BASE
 **/
 
-page-line-height = 1.25
-transition-enabled = true
+page-line-height ?= 1.25
+transition-enabled ?= true
 
 /**
     PATHES
 **/
 
-path-node-modules = '../'
+path-node-modules ?= '../'
 
 /**
     TRANSITIONS TIME
 **/
 
 //Fast animation
-transition-time-sm = 125ms
+transition-time-sm ?= 125ms
 
 //Normal animation
-transition-time-md = 250ms
+transition-time-md ?= 250ms
 
 //Slow animation
-transition-time-lg = 350ms
+transition-time-lg ?= 350ms
 
 
 /**
@@ -31,19 +31,19 @@ transition-time-lg = 350ms
 
 rupture.anti-overlap = -1px
 
-screen-sm = 768px
-screen-xs = 468px
+screen-sm ?= 768px
+screen-xs ?= 468px
 
 /**
     BUTTONS
 **/
 
-btn-border-width = 0.0625rem
+btn-border-width ?= 0.0625rem
 
 //Buttons sizes
 
 //Button height
-btn-height = { 
+btn-height ?= { 
 
     //Extra small height of button
     xsm: {
@@ -89,7 +89,7 @@ btn-height = {
 
 //Buttons colors
 
-btn-styles = {
+btn-styles ?= {
 
     //Green button style
     green: {
@@ -131,12 +131,12 @@ btn-styles = {
 
 //Input border
 
-input-border-color = #989494
-input-border-width = 0.0625rem
+input-border-color ?= #989494
+input-border-width ?= 0.0625rem
 
 //Inpur height
 
-input-height = {
+input-height ?= {
     
     //Extra small height of input
     xsm: {
@@ -188,12 +188,12 @@ input-height = {
 
 //Textarea border
 
-textarea-border-color = #989494
-textarea-border-width = 0.0625rem
+textarea-border-color ?= #989494
+textarea-border-width ?= 0.0625rem
 
 //Textarea height
 
-textarea-height = {
+textarea-height ?= {
     
     //Extra small height of textarea
     xsm: {
@@ -247,12 +247,14 @@ textarea-height = {
     FORMS
 **/
 
-form-item-margin = 0.625rem
-form-separate-margin = form-item-margin * 1.5
-form-item-inside-margin = form-item-margin / 2
+form-item-margin ?= 0.625rem
+form-separate-margin ?= form-item-margin * 1.5
+form-item-inside-margin ?= form-item-margin / 2
 
 /**
     NAVIGATION
 **/
 
-nav-horizontal-item-margin = .5rem
+nav-horizontal-item-margin ?= .5rem
+nav-vertical-item-margin ?= nav-horizontal-item-margin
+nav-underline-disabled ?= false
