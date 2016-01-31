@@ -8,3 +8,13 @@
   padding: 15px;
   background-color: #ccc;
 }
+.nav--gray__link {
+  height: 40px;
+  line-height: 40px;
+  background-color: #6b6363;
+  color: #fff;
+  transition: background-color 200ms;
+}
+.nav--gray__link:hover {
+  background-color: #7b7272;
+}

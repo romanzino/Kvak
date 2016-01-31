@@ -731,8 +731,8 @@ html {
 .radio__control:checked + .radio__description:before {
   opacity: 1;
 }
-.checkbox-single + .checkbox-single,
-.radio-single + .radio-single {
+.control-single + .control-single,
+.input-single + .input-single {
   margin-top: 0.3125rem;
 }
 .form__item {
@@ -741,6 +741,40 @@ html {
 .form__item--separate {
   margin-top: 0.9375rem;
   margin-bottom: 0.9375rem;
+}
+.form__item-in {
+  margin-bottom: 0.3125rem;
+}
+.nav {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.nav__link {
+  display: block;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.nav--vertical {
+  flex-direction: column;
+}
+.nav--horizontal {
+  flex-direction: row;
+}
+.nav--horizontal__link {
+  padding-left: 0.5rem;
+}
+.nav--expanded {
+  flex-direction: row;
+}
+.nav--expanded__item {
+  flex-grow: 1;
+}
+.nav--expanded__link {
+  text-align: center;
 }
 .btn-group {
   display: flex;
