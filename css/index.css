@@ -430,12 +430,6 @@ html {
 * {
   box-sizing: border-box;
 }
-ul,
-ol {
-  padding: 0;
-  margin: 0;
-  list-style-type: none;
-}
 .btn {
   display: inline-block;
   max-width: 100%;
@@ -751,8 +745,14 @@ ol {
 .form__item-in {
   margin-bottom: 0.3125rem;
 }
+.list-unstyled {
+  padding: 0;
+  list-style-type: none;
+}
 .nav {
   display: flex;
+  padding: 0;
+  list-style-type: none;
 }
 .nav__link {
   display: block;
@@ -784,6 +784,8 @@ ol {
 }
 .breadcrumbs {
   display: flex;
+  padding: 0;
+  list-style-type: none;
 }
 .breadcrumbs__item:not(:last-child) {
   margin-right: 0.3125rem;
