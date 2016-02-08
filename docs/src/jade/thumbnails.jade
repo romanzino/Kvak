@@ -1,0 +1,23 @@
+extends chunks/layout.jade
+
+block main    
+    h2 Thumbnails
+
+    h2 Thumbnail using background
+    .thumbnail.thumbnail--bg(style="background-image: url(http://dummyimage.com/300x150/cc0000/ffffff); width: 200px; height: 100px;")
+
+    h2 Thumbnail using img
+    .thumbnail
+        img.thumbnail__img(src="http://dummyimage.com/300x150/cc0000/ffffff", alt="Thumbnail image")
+
+    h2 Thumbnail on the left using img
+    .thumbnail.thumbnail--left
+        img.thumbnail__img(src="http://dummyimage.com/300x150/cc0000/ffffff", alt="Thumbnail image")
+
+
+    h2 Thumbnail on the right using img
+    .thumbnail.thumbnail--right
+        img.thumbnail__img(src="http://dummyimage.com/300x150/cc0000/ffffff", alt="Thumbnail image")
+
+    h2 Thumbnail square
+    .thumbnail.thumbnail--bg.thumbnail--square(style="background-image: url(http://dummyimage.com/300x150/cc0000/ffffff); width: 200px;")
