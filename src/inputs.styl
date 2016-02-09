@@ -22,7 +22,7 @@
 for key, value in input-height
 
     if value['enabled']
-        .input--{key}-h
+        .input--{key}
             create-input-height(value)
 
 //Inputs help classes
@@ -47,7 +47,7 @@ for key, value in input-height
 for key, value in textarea-height
 
     if value['enabled']
-        .textarea--{key}-h
+        .textarea--{key}
             create-textarea-height(value)
 
 //Textares help classes
@@ -75,7 +75,7 @@ for key, value in textarea-height
 for key, value in input-height
 
     if value['enabled']
-        .select--{key}-h
+        .select--{key}
             create-select-height(value)
 
 
@@ -132,8 +132,8 @@ for key, value in input-height
         &:before
             content ' '
             position absolute
-            left 0.25rem
-            top 0.3125rem
+            left 0.20rem
+            top 0.2625rem
             width 0.6rem
             height 0.6rem
             opacity 0
@@ -149,6 +149,48 @@ for key, value in input-height
                     opacity 1
 
 
+.switcher
+    position relative
+    height 1rem
+    &__control
+        position absolute
+        visibility hidden
+
+        &:checked
+            & + ^[0]__state
+                background-color #51C551
+
+                &:after
+                    left 1.45rem
+
+    &__state
+        position relative
+        display inline-flex
+        width 2.5rem
+        height 1rem
+        border 1px solid #989494
+        border-radius 0.75rem
+        background-color #fff
+        if transition-enabled
+            transition background-color transition-time-md
+
+        &:after
+            content ' '
+            position absolute
+            top 50%
+            left -1px
+            display inline-flex
+            height 1rem
+            width 1rem
+            border 1px solid #989494
+            border-radius 100%
+            background-color #fff
+            transform translateY(-50%)
+            if transition-enabled
+                transition left transition-time-md
+
 .control-single, .input-single
+    display flex
+    align-items center
     ^[0] + &
         margin-top form-item-inside-margin

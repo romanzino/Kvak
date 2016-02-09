@@ -2,7 +2,9 @@ html {
   font-size: 16px;
   line-height: 1.25;
 }
-* {
+*,
+*:after,
+*:before {
   box-sizing: border-box;
 }
 .btn {
@@ -21,35 +23,35 @@ html {
   cursor: pointer;
   transition: background-color 250ms, color 250ms, border-color 250ms;
 }
-.btn--xsm-h {
+.btn--xsm {
   height: 1.875rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   line-height: 1.75rem;
   font-size: 0.75rem;
 }
-.btn--sm-h {
+.btn--sm {
   height: 2.1875rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   line-height: 2.0625rem;
   font-size: 0.875rem;
 }
-.btn--md-h {
+.btn--md {
   height: 2.5rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   line-height: 2.375rem;
   font-size: 1rem;
 }
-.btn--lg-h {
+.btn--lg {
   height: 2.8125rem;
   padding-left: 1.8rem;
   padding-right: 1.8rem;
   line-height: 2.6875rem;
   font-size: 1.125rem;
 }
-.btn--xlg-h {
+.btn--xlg {
   height: 3.125rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
@@ -128,31 +130,31 @@ html {
   cursor: pointer;
   transition: background-color 250ms, color 250ms, border-color 250ms;
 }
-.input--xsm-h {
+.input--xsm {
   height: 1.875rem;
   padding: 0 0.8rem;
   line-height: 1.75rem;
   font-size: 0.75rem;
 }
-.input--sm-h {
+.input--sm {
   height: 2.1875rem;
   padding: 0 1rem;
   line-height: 2.0625rem;
   font-size: 0.875rem;
 }
-.input--md-h {
+.input--md {
   height: 2.5rem;
   padding: 0 1rem;
   line-height: 2.375rem;
   font-size: 1rem;
 }
-.input--lg-h {
+.input--lg {
   height: 2.8125rem;
   padding: 0 1rem;
   line-height: 2.6875rem;
   font-size: 1.125rem;
 }
-.input--xlg-h {
+.input--xlg {
   height: 3.125rem;
   padding: 0 1rem;
   line-height: 3rem;
@@ -166,27 +168,27 @@ html {
   cursor: pointer;
   transition: background-color 250ms, color 250ms, border-color 250ms;
 }
-.textarea--xsm-h {
+.textarea--xsm {
   height: 3.125rem;
   padding: 0.5rem 1rem;
   font-size: 0.75rem;
 }
-.textarea--sm-h {
+.textarea--sm {
   height: 4.375rem;
   padding: 0.5rem 1rem;
   font-size: 0.875rem;
 }
-.textarea--md-h {
+.textarea--md {
   height: 5.625rem;
   padding: 0.5rem 1rem;
   font-size: 1rem;
 }
-.textarea--lg-h {
+.textarea--lg {
   height: 6.875rem;
   padding: 0.5rem 1rem;
   font-size: 1.125rem;
 }
-.textarea--xlg-h {
+.textarea--xlg {
   height: 8.125rem;
   padding: 0.5rem 1rem;
   font-size: 1.25rem;
@@ -206,31 +208,31 @@ html {
   border: 0.0625rem solid #989494;
   cursor: pointer;
 }
-.select--xsm-h {
+.select--xsm {
   height: 1.875rem;
   padding: 0 0.8rem;
   line-height: 1.75rem;
   font-size: 0.75rem;
 }
-.select--sm-h {
+.select--sm {
   height: 2.1875rem;
   padding: 0 1rem;
   line-height: 2.0625rem;
   font-size: 0.875rem;
 }
-.select--md-h {
+.select--md {
   height: 2.5rem;
   padding: 0 1rem;
   line-height: 2.375rem;
   font-size: 1rem;
 }
-.select--lg-h {
+.select--lg {
   height: 2.8125rem;
   padding: 0 1rem;
   line-height: 2.6875rem;
   font-size: 1.125rem;
 }
-.select--xlg-h {
+.select--xlg {
   height: 3.125rem;
   padding: 0 1rem;
   line-height: 3rem;
@@ -294,8 +296,8 @@ html {
 .radio__description:before {
   content: ' ';
   position: absolute;
-  left: 0.25rem;
-  top: 0.3125rem;
+  left: 0.2rem;
+  top: 0.2625rem;
   width: 0.6rem;
   height: 0.6rem;
   opacity: 0;
@@ -305,6 +307,49 @@ html {
 }
 .radio__control:checked + .radio__description:before {
   opacity: 1;
+}
+.switcher {
+  position: relative;
+  height: 1rem;
+}
+.switcher__control {
+  position: absolute;
+  visibility: hidden;
+}
+.switcher__control:checked + .switcher__state {
+  background-color: #51c551;
+}
+.switcher__control:checked + .switcher__state:after {
+  left: 1.45rem;
+}
+.switcher__state {
+  position: relative;
+  display: inline-flex;
+  width: 2.5rem;
+  height: 1rem;
+  border: 1px solid #989494;
+  border-radius: 0.75rem;
+  background-color: #fff;
+  transition: background-color 250ms;
+}
+.switcher__state:after {
+  content: ' ';
+  position: absolute;
+  top: 50%;
+  left: -1px;
+  display: inline-flex;
+  height: 1rem;
+  width: 1rem;
+  border: 1px solid #989494;
+  border-radius: 100%;
+  background-color: #fff;
+  transform: translateY(-50%);
+  transition: left 250ms;
+}
+.control-single,
+.input-single {
+  display: flex;
+  align-items: center;
 }
 .control-single + .control-single,
 .input-single + .input-single {
