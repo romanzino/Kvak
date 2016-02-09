@@ -151,6 +151,8 @@ for key, value in input-height
 
 .switcher
     position relative
+    display inline-flex
+    align-items center
     height 1rem
     &__control
         position absolute
@@ -161,14 +163,16 @@ for key, value in input-height
                 background-color #51C551
 
                 &:after
-                    left 1.45rem
+                    left .95rem
 
     &__state
         position relative
         display inline-flex
-        width 2.5rem
+        width 2rem
         height 1rem
+        margin-right .5rem
         border 1px solid #989494
+
         border-radius 0.75rem
         background-color #fff
         if transition-enabled

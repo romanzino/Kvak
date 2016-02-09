@@ -5,9 +5,9 @@ block main
 
     form.form
         .form__item
-            input.input.input--lg-h(type="text", placeholder="Your name")
+            input.input.input--lg(type="text", placeholder="Your name")
         .form__item
-            textarea.textarea.textarea--lg-h(placeholder="Place for your comment")
+            textarea.textarea.textarea--lg(placeholder="Place for your comment")
         .form__item
             .form__item-in
                 label.checkbox
@@ -18,5 +18,11 @@ block main
                 label.checkbox
                     input.checkbox__control(type="checkbox")
                     span.checkbox__description Some text here
+        .form__item
+            label.switcher
+                input.switcher__control(type="checkbox")
+                span.switcher__state
+                span Some text here
+
         .form__item.form__item--separate
-            button.btn.btn--green.btn--lg-h Send!
+            button.btn.btn--green.btn--lg Send!

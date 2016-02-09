@@ -310,6 +310,8 @@ html {
 }
 .switcher {
   position: relative;
+  display: inline-flex;
+  align-items: center;
   height: 1rem;
 }
 .switcher__control {
@@ -320,13 +322,14 @@ html {
   background-color: #51c551;
 }
 .switcher__control:checked + .switcher__state:after {
-  left: 1.45rem;
+  left: 0.95rem;
 }
 .switcher__state {
   position: relative;
   display: inline-flex;
-  width: 2.5rem;
+  width: 2rem;
   height: 1rem;
+  margin-right: 0.5rem;
   border: 1px solid #989494;
   border-radius: 0.75rem;
   background-color: #fff;
