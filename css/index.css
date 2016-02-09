@@ -371,6 +371,7 @@ h6,
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  text-decoration: none;
 }
 .nav--vertical {
   flex-direction: column;
@@ -442,6 +443,34 @@ h6,
 .breadcrumbs__link,
 .breadcrumbs__current {
   white-space: nowrap;
+}
+.breadcrumbs__link {
+  text-decoration: none;
+  color: #000;
+}
+.breadcrumbs__current {
+  cursor: default;
+}
+.breadcrumbs--center {
+  justify-content: center;
+}
+.pagination {
+  display: flex;
+  padding: 0;
+  list-style-type: none;
+}
+.pagination__item:not(:last-child) {
+  margin-right: 0.3125rem;
+}
+.pagination__link {
+  text-decoration: none;
+  color: #000;
+}
+.pagination__current {
+  cursor: default;
+}
+.pagination--center {
+  justify-content: center;
 }
 .thumbnail {
   display: flex;

@@ -15,3 +15,17 @@
 
     &__link, &__current
         white-space nowrap
+
+    &__link
+        if breadcrumbs-link-underline
+            text-decoration underline
+        else
+            text-decoration none
+        color breadcrumbs-link-color
+
+
+    &__current
+        cursor default
+
+.breadcrumbs--center
+    justify-content center

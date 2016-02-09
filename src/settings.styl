@@ -260,7 +260,7 @@ form-item-inside-margin ?= form-item-margin / 2
 
 nav-horizontal-item-margin ?= .5rem
 nav-vertical-item-margin ?= nav-horizontal-item-margin
-nav-underline-disabled ?= false
+nav-underline-disabled ?= true
 
 
 /**
@@ -268,14 +268,25 @@ nav-underline-disabled ?= false
 **/
 
 breadcrumbs-separator-content ?= '\203A'
+breadcrumbs-link-underline ?= false
+breadcrumbs-link-color ?= #000
 breadcrumbs-item-margin ?= 0.3125rem
+
+
+/**
+    PAGINATION
+**/
+
+pagination-link-color ?= #000
+pagination-link-underline ?= false
+pagination-item-margin ?= 0.3125rem
 
 
 /**
     TYPOGRAPHY
 **/
 
-headings = {
+headings ?= {
     h1: {
         font-size: 1.625rem,
         margin-top: 1rem

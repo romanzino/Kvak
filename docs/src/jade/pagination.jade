@@ -1,0 +1,12 @@
+extends chunks/layout.jade
+
+block main    
+    h2 Pagination
+
+    - var i = 2
+    ul.pagination.pagination--center
+        li.pagination__item
+            span.pagination__current 1
+        while i <= 5
+            li.pagination__item
+                a.pagination__link(href="#")= i++   
