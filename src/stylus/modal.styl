@@ -1,0 +1,70 @@
+@import 'settings'
+
+.modal
+    position fixed
+    top 0
+    left 0
+    bottom 0
+    right 0
+    z-index 10
+    overflow auto
+    background-color modal-background
+    
+    &:not(.modal--fade)
+        display none
+
+    &--center
+        font-size 0
+        &:before
+            content " "
+            display inline-block
+            vertical-align middle
+            height 100%
+
+    &__dialog
+        position absolute
+        margin 1rem 0
+        left 50%
+        width 600px
+        background-color #fff
+        transform translateX(-50%)
+
+        +below(screen-sm)
+            width 90%
+            width calc(100% - 20px)
+
+    &--center__dialog
+        position relative
+        display inline-block
+        vertical-align middle
+        font-size 1rem
+        
+    &__header
+        display flex
+    
+    &__title
+        flex-grow 1
+        align-self center
+        margin 0
+        padding modal-padding
+        
+    &__content
+        padding modal-padding
+        
+
+.modal--fade
+    if transition-enabled
+        transform translate(9999px)
+        opacity 0
+        transition opacity transition-time-md, transform 0s ease transition-time-md
+
+.modal--open
+    transform translate(0, 0)
+    
+    &:not(.modal--fade)
+        display block
+    
+    &.modal--fade
+        if transition-enabled
+            opacity 1
+            transition opacity transition-time-md, transform 0s ease 0s

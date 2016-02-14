@@ -2,6 +2,7 @@ import gulp from 'gulp';
 import watch from 'gulp-watch';
 import rename from 'gulp-rename';
 import stylus from 'gulp-stylus';
+import babel from 'gulp-babel';
 import rupture from 'rupture';
 import postcss from 'gulp-postcss';
 import autoprefixer from 'autoprefixer';
@@ -20,13 +21,23 @@ gulp.task('solovey:stylus', () => {
         }))
         .pipe(postcss([
             autoprefixer({
-                browsers: ['last 2 versions', 'ie >= 10', 'android >= 2.3']
+                browsers: ['last 2 versions', 'ie >= 10', 'android >= 4']
             }),
             mergeRules(),
             flexBugsFixes()
         ]))
         .pipe(rename('solovey.css'))
         .pipe(gulp.dest('./dist/css/'));
+});
+
+gulp.task('solovey:js', () => {
+    gulp
+        .src('./src/js/**/*.js')
+        .pipe(babel({
+            presets: ['es2015']
+        }))
+        .pipe(gulp.dest('./dist/js/'))
+
 });
 
 gulp.task('solovey:css-build', ['solovey:stylus'], () => {
@@ -40,7 +51,8 @@ gulp.task('solovey:css-build', ['solovey:stylus'], () => {
 });
 
 gulp.task('solovey:watch', () => {
-    gulp.watch('./src/stylus/**/*.styl', ['solovey:stylus']);
+    gulp.watch('./src/stylus/**/*.styl', ['solovey:css-build']);
+    gulp.watch('./src/js/**/*.js', ['solovey:js']);
 });
 
-gulp.task('default', ['solovey:stylus', 'solovey:css-build', 'solovey:watch']);
+gulp.task('default', ['solovey:js', 'solovey:css-build', 'solovey:watch']);

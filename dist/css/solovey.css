@@ -5,8 +5,10 @@ html {
 *,
 *:after,
 *:before {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
+}
+.overflow-hidden,.btn {
+  overflow: hidden;
 }
 .btn {
   display: inline-block;
@@ -15,7 +17,6 @@ html {
   padding-top: 0;
   padding-bottom: 0;
   white-space: nowrap;
-  overflow: hidden;
   text-overflow: ellipsis;
   text-decoration: none;
   background-color: transparent;
@@ -632,8 +633,92 @@ h6,
   padding-bottom: 100%;
 }
 .thumbnail--bg {
-  -webkit-background-size: cover;
-          background-size: cover;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+}
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 10;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.7);
+}
+.modal:not(.modal--fade) {
+  display: none;
+}
+.modal--center {
+  font-size: 0;
+}
+.modal--center:before {
+  content: " ";
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
+}
+.modal__dialog {
+  position: absolute;
+  margin: 1rem 0;
+  left: 50%;
+  width: 600px;
+  background-color: #fff;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+@media only screen and (max-width: 767px) {
+  .modal__dialog {
+    width: 90%;
+    width: calc(100% - 20px);
+  }
+}
+.modal--center__dialog {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 1rem;
+}
+.modal__header {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+.modal__title {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-align-self: center;
+      -ms-flex-item-align: center;
+          align-self: center;
+  margin: 0;
+}
+.modal__title,.modal__content {
+  padding: 1rem;
+}
+.modal--fade {
+  -webkit-transform: translate(9999px);
+          transform: translate(9999px);
+  opacity: 0;
+  -webkit-transition: opacity 250ms, -webkit-transform 0s ease 250ms;
+  transition: opacity 250ms, -webkit-transform 0s ease 250ms;
+  transition: opacity 250ms, transform 0s ease 250ms;
+  transition: opacity 250ms, transform 0s ease 250ms, -webkit-transform 0s ease 250ms;
+}
+.modal--open {
+  -webkit-transform: translate(0, 0);
+          transform: translate(0, 0);
+}
+.modal--open:not(.modal--fade) {
+  display: block;
+}
+.modal--open.modal--fade {
+  opacity: 1;
+  -webkit-transition: opacity 250ms, -webkit-transform 0s ease 0s;
+  transition: opacity 250ms, -webkit-transform 0s ease 0s;
+  transition: opacity 250ms, transform 0s ease 0s;
+  transition: opacity 250ms, transform 0s ease 0s, -webkit-transform 0s ease 0s;
 }

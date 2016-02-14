@@ -1,0 +1,30 @@
+extends chunks/layout.jade
+
+block main
+    h2 Modal
+
+    button.btn.btn--green.btn--md(data-open="modal-1") Open Model
+
+    .modal.modal--fade(data-el="modal-1")
+        .modal__dialog(data-el="modal-dialog")
+            .modal__header
+                h4.modal__title hello from Modal
+                .modal__close
+                    button.btn.btn--red.btn--md(data-close="modal") &times;
+
+            .modal__content
+                p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+    h2 Modal centered
+
+    button.btn.btn--green.btn--md(data-open="modal-2") Open Model Centered
+
+    .modal.modal--fade.modal--center(data-el="modal-2")
+        .modal__dialog.modal--center__dialog(data-el="modal-dialog")
+            .modal__header
+                h4.modal__title hello from Modal
+                .modal__close
+                    button.btn.btn--red.btn--md(data-close="modal") &times;
+
+            .modal__content
+                p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
