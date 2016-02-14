@@ -26,6 +26,9 @@ html {
   -webkit-transition: background-color 250ms, color 250ms, border-color 250ms;
   transition: background-color 250ms, color 250ms, border-color 250ms;
 }
+.btn:focus {
+  outline: none;
+}
 .btn--xsm {
   height: 1.875rem;
   line-height: 1.75rem;
@@ -60,6 +63,31 @@ html {
   padding-right: 1.5rem;
   line-height: 3rem;
   font-size: 1.25rem;
+}
+.btn--icon-xsm {
+  width: 1.875rem;
+  font-size: 1.25rem;
+  padding: 0;
+}
+.btn--icon-sm {
+  width: 2.1875rem;
+  font-size: 1.458333333333333rem;
+  padding: 0;
+}
+.btn--icon-md {
+  width: 2.5rem;
+  font-size: 1.666666666666667rem;
+  padding: 0;
+}
+.btn--icon-lg {
+  width: 2.8125rem;
+  font-size: 1.875rem;
+  padding: 0;
+}
+.btn--icon-xlg {
+  width: 3.125rem;
+  font-size: 2.083333333333333rem;
+  padding: 0;
 }
 .btn--green {
   background-color: #3f9927;

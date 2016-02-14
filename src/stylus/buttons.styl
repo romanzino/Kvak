@@ -21,18 +21,30 @@
     cursor pointer
     if transition-enabled
         transition background-color transition-time-md, color transition-time-md, border-color transition-time-md
+        
+    &:focus
+        outline none
 
 
 /*
     BUTTONS SIZES
 */
 
-//Generates input height
+//Generates buttons height
 for key, value in btn-height
 
     if value['enabled']
         .btn--{key}
             create-button-height(value)
+            
+//Generates buttons icons
+for key, value in btn-height
+
+    if value['enabled']
+        .btn--icon-{key}
+            width: value['height']
+            font-size: (value['height']/1.5)
+            padding 0
 
 /*
     BUTTONS STYLES
