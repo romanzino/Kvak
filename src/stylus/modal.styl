@@ -25,13 +25,17 @@
         position absolute
         margin 1rem 0
         left 50%
-        width 600px
         background-color #fff
         transform translateX(-50%)
 
         +below(screen-sm)
             width 90%
-            width calc(100% - 20px)
+            width calc(100% - 1.25rem)
+            
+    +above(screen-sm)
+        for key, value in modal-data
+            &__dialog--{key}
+                width: value['width']
 
     &--center__dialog
         position relative

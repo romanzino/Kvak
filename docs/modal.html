@@ -14,8 +14,8 @@
       </header>
       <h2>Modal</h2>
       <button data-open="modal-1" class="btn btn--green btn--md">Open Model</button>
-      <div data-el="modal-1" class="modal modal--fade">
-        <div data-el="modal-dialog" class="modal__dialog">
+      <div data-modal="modal-1" class="modal modal--fade">
+        <div data-el="modal-dialog" class="modal__dialog modal__dialog--md">
           <div class="modal__header">
             <h4 class="modal__title">hello from Modal</h4>
             <div class="modal__close">
@@ -29,8 +29,8 @@
       </div>
       <h2>Modal centered</h2>
       <button data-open="modal-2" class="btn btn--green btn--md">Open Model Centered</button>
-      <div data-el="modal-2" class="modal modal--fade modal--center">
-        <div data-el="modal-dialog" class="modal__dialog modal--center__dialog">
+      <div data-modal="modal-2" class="modal modal--fade modal--center">
+        <div data-el="modal-dialog" class="modal__dialog modal__dialog--md modal--center__dialog">
           <div class="modal__header">
             <h4 class="modal__title">hello from Modal</h4>
             <div class="modal__close">
@@ -42,6 +42,13 @@
           </div>
         </div>
       </div>
+      <h2>Load modal</h2>
+      <button data-el="modal-load" class="btn btn--green btn--md">Load Modal</button>
+      <script>
+        document.querySelector('[data-el="modal-load"]').onclick = function () {
+            new Modal('modal.txt');
+        }
+      </script>
     </div>
     <footer class="main-footer">
       <div class="copyright"><a href="https://github.com/romanzino/Solovey">Roman Zino</a></div>

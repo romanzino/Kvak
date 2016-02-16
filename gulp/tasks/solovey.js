@@ -10,6 +10,7 @@ import mergeRules from 'postcss-merge-rules';
 import flexBugsFixes from 'postcss-flexbugs-fixes';
 import minifyCSS from 'gulp-minify-css';
 import combineMQ from 'gulp-combine-mq';
+import sourcemaps from 'gulp-sourcemaps';
 
 //Compile solovey
 gulp.task('solovey:stylus', () => {
@@ -33,9 +34,11 @@ gulp.task('solovey:stylus', () => {
 gulp.task('solovey:js', () => {
     gulp
         .src('./src/js/**/*.js')
+        .pipe(sourcemaps.init())
         .pipe(babel({
             presets: ['es2015']
         }))
+        .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('./dist/js/'))
 
 });

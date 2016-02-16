@@ -691,7 +691,6 @@ h6,
   position: absolute;
   margin: 1rem 0;
   left: 50%;
-  width: 600px;
   background-color: #fff;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
@@ -699,7 +698,18 @@ h6,
 @media only screen and (max-width: 767px) {
   .modal__dialog {
     width: 90%;
-    width: calc(100% - 20px);
+    width: calc(100% - 1.25rem);
+  }
+}
+@media only screen and (min-width: 768px) {
+  .modal__dialog--sm {
+    width: 25rem;
+  }
+  .modal__dialog--md {
+    width: 31.25rem;
+  }
+  .modal__dialog--lg {
+    width: 37.5rem;
   }
 }
 .modal--center__dialog {

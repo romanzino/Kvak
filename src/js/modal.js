@@ -1,114 +1,236 @@
 /**
- * THE MODAL
- */
+* THE MODAL
+*/
 
-const Modal = (() => {
+class Modal {
 
     /**
-     * Default modal class name
-     * @type {String}
+     * @constructor
+     * @param {object|string} parameter
+     * @return {void}
      */
-    const classNameDefault = 'modal';
-    /**
-     * Modifier for the modal when it is open
-     * @return {String}
-     */
-    const classNameOpened = (() => classNameDefault + '--open')();
-    /**
-     * @type {Object}
-     */
-    const $body = $('body');
+    constructor(parameter, open = true) {
+        let typeofParameter = typeof parameter;
+        this.$body = $(document.body);
 
-    class Modal {
-        /**
-         * @param  {object} DOMElement
-         * @param  {string} remoteURL
-         * @return {void}
-         */
-        constructor({DOMElement, remoteURL}) {
-            if (DOMElement) {
-                this.$el = $(DOMElement);
-            }
-            else {
-                //todo
-            }
-
-            this.open();
-            this._listenForClose();
+        if (typeofParameter === 'object') {
+            this.$el = $(parameter);
+            this._initializeModal(open);
         }
-
-        /**
-         * Opens the modal
-         * @return {void}
-         */
-        open() {
-            $body.addClass('overflow-hidden');
-            this.$el.addClass(classNameOpened);
-        }
-
-        /**
-         * Closes the modal
-         * @return {void}
-         */
-        close() {
-            $body.removeClass('overflow-hidden');
-            this.$el.removeClass(classNameOpened);
-        }
-
-        /**
-         * Listens some actions and closes the modal
-         * @return {void}
-         */
-        _listenForClose() {
-            let $closeToggle = this.$el.find('[data-close*="modal"]');
-            let $target;
-
-
-            $closeToggle.click((event) => {
-                this.close();
-                event.preventDefault();
+        else if (typeofParameter === 'string') {
+            let loadPromise = this._loadModal(parameter);
+            
+            loadPromise.then(modalHTML => {
+                this.$el = this._addModal(modalHTML);
+                this._initializeModal(open);
+            }, () => {
+                throw new Error(`An error occurred while loading modal from ${parameter}`);
             });
-
-            //Close the modal when user clicking on the background
-            this.$el.click((event) => {
-                $target = $(event.target);
-                
-                if (!($target.is('[data-el="modal-dialog"]')) && !($target.closest('[data-el="modal-dialog"]').length)) {
-                   this.close(); 
-                }
-
-                event.preventDefault();
-            });
+            
+            return;
+        }
+        else {
+            throw new Error('Wrong parameter for the Modal');
         }
     }
 
     /**
+    * Modifier for the modal when it is open
+    * @type {String}
+    */
+    static get classNameOpened() {
+        return 'modal--open';
+    }
+
+    /**
+     * Opens the modal
+     * @public
+     * @return {void}
+     */
+    openModal() {
+        this.$body.addClass('overflow-hidden');
+        this.$el.addClass(Modal.classNameOpened);
+    }
+
+    /**
+     * Closes the modal
+     * @public
+     * @return {void}
+     */
+    closeModal() {
+        this.$body.removeClass('overflow-hidden');
+        this.$el.removeClass(Modal.classNameOpened);
+    }
+
+    /**
+     * Initializes the modal
+     * @private
+     * @param  {boolean} open
+     * @return {void}
+     */
+    _initializeModal(open) {
+        if (open) {
+            this.openModal();   
+        }
+
+        this._addEventListeners();
+    }
+
+    /**
+     * Event listeners
+     * @private
+     * @return {void}
+     */
+    _addEventListeners() {
+        let $closeToggle = this.$el.find('[data-close*="modal"]');
+        let $target;
+
+
+        //Close the modal when user clicking on the close button
+        $closeToggle.click(event => {
+            this.closeModal();
+            event.preventDefault();
+        });
+
+        //Close the modal when user clicking on the background
+        this.$el.click(event => {
+            $target = $(event.target);
+            
+            if (!($target.is('[data-el="modal-dialog"]')) && !($target.closest('[data-el="modal-dialog"]').length)) {
+               this.closeModal(); 
+            }
+
+            event.preventDefault();
+        });
+    }
+
+    /**
+     * Get the last modal ID
+     * @private
+     * @return {number}
+     */
+    _getLastModalID() {
+        let lastModalID = $('[data-modal*="modal"]')
+            .last()
+                .attr('data-modal')
+                    .match(/\d/)
+                    .join()
+
+        return parseInt(lastModalID);
+    }
+
+    /**
+     * Creates the new modal ID
+     * @private
+     * @param  {number} lastModalID
+     * @return {number}
+     */
+    _createModalID(lastModalID) {
+        return lastModalID + 1;
+    }
+
+    _setModalID($modal, modalID) {
+        return $modal.attr('data-el', `modal-${modalID}`);
+    }
+
+    /**
+     * Loads the modal from remote url
+     * @private
+     * @param  {string} url
+     * @return {object}
+     */
+    _loadModal(url) {
+        let loadPromise = new Promise((resolve, reject) => {
+            $.ajax({
+                url: url,
+                type: 'GET',
+                timeout: 10000,
+                success: data => {
+                    resolve(data);
+                },
+                error: () => {
+                    reject();
+                }
+            });
+        });
+
+        return loadPromise;
+    }
+
+    /**
+     * Adds the loaded modal to DOM
+     * @private
+     * @param {object} modal
+     * @return {object}
+     */
+    _addModal(modalHTML) {
+        let $modal = $(modalHTML);
+        let lastModalID = this._getLastModalID();
+        let modalID = this._createModalID(lastModalID);
+
+        $modal = this._setModalID($modal, modalID);
+
+        return $modal.appendTo(this.$body);
+    }
+}
+
+
+(function () {
+    let initializedModals = new Map();
+
+    /**
      * Open the modal when user clicking on the modal toggle
      */
-    $('[data-open*="modal"]').click((event) => {
-        let $toggle = $(event.target);
-        /**
-         * The modal's identifier in the DOM
-         * @type {number}
-         */
-        let targetID = $toggle.attr('data-open');
-        let $target = $(`[data-el="${targetID}"]`);
+    $('[data-open*="modal"]').click(event => {
+        let modalID = getModalID(event.target);
+        let initializedModal = initializedModals.get(modalID);
 
-        if ($target.length > 1) {
-            throw new Error(`There is a couple modals with the same ID = ${targetID} !`);
-        }
-        else if ($target.length < 1) {
-            console.info(`There isn't the modal with the ID = ${targetID} !`)
+        if (!initializedModal) {
+            /**
+             * The modal we should open
+             * @type {object}
+             */
+            let $modal = $(`[data-modal="${modalID}"]`);
+
+            if ($modal.length > 1) {
+                throw new Error(`There is a couple modals with the same ID = ${modalID} !`);
+            }
+            else if ($modal.length < 1) {
+                console.info(`There isn't the modal with the ID = ${modalID} !`)
+            }
+            else {
+                initializeModal(modalID, $modal);
+            }
         }
         else {
-            new Modal({
-                DOMElement: $target
-            });
+            initializedModal.openModal();
         }
 
         event.preventDefault();
     });
 
-    return Modal;
+    /**
+     * Gets modal's ID in the DOM
+     * @param  {object} target
+     * @return {string}
+     */
+    function getModalID(target) {
+        let $target = $(target);
+        let modalID = $target.attr('data-open');
+
+        return modalID;
+    }
+
+    /**
+     * Creates the new modal
+     * @param  {string} modalID
+     * @param  {object} $modal
+     * @return {object}
+     */
+    function initializeModal(modalID, $modal) {
+        let modal = new Modal($modal);
+        
+        return initializedModals.set(modalID, modal);
+    }
 
 })();
