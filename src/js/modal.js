@@ -1,8 +1,12 @@
 /**
-* THE MODAL
-*/
+ * @module Modal Window
+ * @copyright Roman Zino 2016
+ */
 
-class Modal {
+import LoadingScreen from './loadingscreen';
+import Blackout from './blackout';
+
+class Modal extends Blackout {
 
     /**
      * @constructor
@@ -10,36 +14,36 @@ class Modal {
      * @return {void}
      */
     constructor(parameter, open = true) {
+        super();
+
         let typeofParameter = typeof parameter;
-        this.$body = $(document.body);
 
         if (typeofParameter === 'object') {
-            this.$el = $(parameter);
+            this.$el = parameter;
+
             this._initializeModal(open);
         }
         else if (typeofParameter === 'string') {
             let loadPromise = this._loadModal(parameter);
             
-            loadPromise.then(modalHTML => {
-                this.$el = this._addModal(modalHTML);
-                this._initializeModal(open);
+            LoadingScreen.show();
+
+            loadPromise.then((modalHTML) => {
+                
+                setTimeout(() => {
+                    this.$el = this._addModal(modalHTML);
+                    let loadingScreenPromise = LoadingScreen.hide();
+
+                    loadingScreenPromise.then(() => this._initializeModal(open));
+                }, 10000);
+
             }, () => {
                 throw new Error(`An error occurred while loading modal from ${parameter}`);
             });
-            
-            return;
         }
         else {
             throw new Error('Wrong parameter for the Modal');
         }
-    }
-
-    /**
-    * Modifier for the modal when it is open
-    * @type {String}
-    */
-    static get classNameOpened() {
-        return 'modal--open';
     }
 
     /**
@@ -48,8 +52,7 @@ class Modal {
      * @return {void}
      */
     openModal() {
-        this.$body.addClass('overflow-hidden');
-        this.$el.addClass(Modal.classNameOpened);
+        super.show();
     }
 
     /**
@@ -58,8 +61,7 @@ class Modal {
      * @return {void}
      */
     closeModal() {
-        this.$body.removeClass('overflow-hidden');
-        this.$el.removeClass(Modal.classNameOpened);
+        super.hide();
     }
 
     /**
@@ -85,18 +87,17 @@ class Modal {
         let $closeToggle = this.$el.find('[data-close*="modal"]');
         let $target;
 
-
         //Close the modal when user clicking on the close button
-        $closeToggle.click(event => {
+        $closeToggle.click((event) => {
             this.closeModal();
             event.preventDefault();
         });
 
         //Close the modal when user clicking on the background
-        this.$el.click(event => {
+        this.$el.click((event) => {
             $target = $(event.target);
             
-            if (!($target.is('[data-el="modal-dialog"]')) && !($target.closest('[data-el="modal-dialog"]').length)) {
+            if (!($target.is('[data-modal-el="dialog"]')) && !($target.closest('[data-modal-el="dialog"]').length)) {
                this.closeModal(); 
             }
 
@@ -145,7 +146,7 @@ class Modal {
                 url: url,
                 type: 'GET',
                 timeout: 10000,
-                success: data => {
+                success: (data) => {
                     resolve(data);
                 },
                 error: () => {
@@ -174,14 +175,13 @@ class Modal {
     }
 }
 
-
 (function () {
     let initializedModals = new Map();
 
     /**
      * Open the modal when user clicking on the modal toggle
      */
-    $('[data-open*="modal"]').click(event => {
+    $('[data-open*="modal"]').click((event) => {
         let modalID = getModalID(event.target);
         let initializedModal = initializedModals.get(modalID);
 
@@ -196,7 +196,7 @@ class Modal {
                 throw new Error(`There is a couple modals with the same ID = ${modalID} !`);
             }
             else if ($modal.length < 1) {
-                console.info(`There isn't the modal with the ID = ${modalID} !`)
+                console.info(`There is no the modal with the ID = ${modalID} !`)
             }
             else {
                 initializeModal(modalID, $modal);
@@ -234,3 +234,6 @@ class Modal {
     }
 
 })();
+
+window.Solovey = window.Solovey || {};
+Solovey.Modal = Modal;

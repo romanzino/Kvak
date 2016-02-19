@@ -1,0 +1,15 @@
+.loader
+	&--striped-bar
+		width 500px
+		height 30px
+		background-image repeating-linear-gradient(45deg, #8BC34A, #8BC34A 10px, #fff 10px, #fff 20px)
+		background-size 28px 30px
+		animation loader-striped-bar-animaton 3s linear infinite
+		
+
+@keyframes loader-striped-bar-animaton
+	from
+		background-position 28px 30px
+	
+	to
+		background-position 0px 30px

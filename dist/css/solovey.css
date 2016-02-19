@@ -665,6 +665,45 @@ h6,
   background-repeat: no-repeat;
   background-position: center center;
 }
+.blackout {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 20;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.7);
+}
+.blackout:not(.blackout--fade) {
+  display: none;
+}
+.blackout--fade {
+  -webkit-transform: translate(9999px);
+          transform: translate(9999px);
+  opacity: 0;
+  -webkit-transition: opacity 250ms, -webkit-transform 0s ease 250ms;
+  transition: opacity 250ms, -webkit-transform 0s ease 250ms;
+  transition: opacity 250ms, transform 0s ease 250ms;
+  transition: opacity 250ms, transform 0s ease 250ms, -webkit-transform 0s ease 250ms;
+}
+.blackout--open,
+.modal--open {
+  -webkit-transform: translate(0, 0);
+          transform: translate(0, 0);
+}
+.blackout--open:not(.blackout--fade),
+.modal--open:not(.modal--open--fade) {
+  display: block;
+}
+.blackout--open.blackout--fade,
+.modal--open.modal--open--fade {
+  opacity: 1;
+  -webkit-transition: opacity 250ms, -webkit-transform 0s ease 0s;
+  transition: opacity 250ms, -webkit-transform 0s ease 0s;
+  transition: opacity 250ms, transform 0s ease 0s;
+  transition: opacity 250ms, transform 0s ease 0s, -webkit-transform 0s ease 0s;
+}
 .modal {
   position: fixed;
   top: 0;
@@ -673,10 +712,6 @@ h6,
   right: 0;
   z-index: 10;
   overflow: auto;
-  background-color: rgba(0,0,0,0.7);
-}
-.modal:not(.modal--fade) {
-  display: none;
 }
 .modal--center {
   font-size: 0;
@@ -737,26 +772,36 @@ h6,
 .modal__title,.modal__content {
   padding: 1rem;
 }
-.modal--fade {
-  -webkit-transform: translate(9999px);
-          transform: translate(9999px);
-  opacity: 0;
-  -webkit-transition: opacity 250ms, -webkit-transform 0s ease 250ms;
-  transition: opacity 250ms, -webkit-transform 0s ease 250ms;
-  transition: opacity 250ms, transform 0s ease 250ms;
-  transition: opacity 250ms, transform 0s ease 250ms, -webkit-transform 0s ease 250ms;
+.loading-screen__spinner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  max-width: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
-.modal--open {
-  -webkit-transform: translate(0, 0);
-          transform: translate(0, 0);
+.loader--striped-bar {
+  width: 500px;
+  height: 30px;
+  background-image: -webkit-repeating-linear-gradient(45deg, #8bc34a, #8bc34a 10px, #fff 10px, #fff 20px);
+  background-image: repeating-linear-gradient(45deg, #8bc34a, #8bc34a 10px, #fff 10px, #fff 20px);
+  background-size: 28px 30px;
+  -webkit-animation: loader-striped-bar-animaton 3s linear infinite;
+          animation: loader-striped-bar-animaton 3s linear infinite;
 }
-.modal--open:not(.modal--fade) {
-  display: block;
+@-webkit-keyframes loader-striped-bar-animaton {
+  from {
+    background-position: 28px 30px;
+  }
+  to {
+    background-position: 0px 30px;
+  }
 }
-.modal--open.modal--fade {
-  opacity: 1;
-  -webkit-transition: opacity 250ms, -webkit-transform 0s ease 0s;
-  transition: opacity 250ms, -webkit-transform 0s ease 0s;
-  transition: opacity 250ms, transform 0s ease 0s;
-  transition: opacity 250ms, transform 0s ease 0s, -webkit-transform 0s ease 0s;
+@keyframes loader-striped-bar-animaton {
+  from {
+    background-position: 28px 30px;
+  }
+  to {
+    background-position: 0px 30px;
+  }
 }

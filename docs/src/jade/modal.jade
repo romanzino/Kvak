@@ -5,8 +5,8 @@ block main
 
     button.btn.btn--green.btn--md(data-open="modal-1") Open Model
 
-    .modal.modal--fade(data-modal="modal-1")
-        .modal__dialog.modal__dialog--md(data-el="modal-dialog")
+    .blackout.blackout--fade.modal(data-modal="modal-1")
+        .modal__dialog.modal__dialog--md(data-modal-el="dialog")
             .modal__header
                 h4.modal__title hello from Modal
                 .modal__close
@@ -19,8 +19,8 @@ block main
 
     button.btn.btn--green.btn--md(data-open="modal-2") Open Model Centered
 
-    .modal.modal--fade.modal--center(data-modal="modal-2")
-        .modal__dialog.modal__dialog--md.modal--center__dialog(data-el="modal-dialog")
+    .blackout.blackout--fade.modal.modal--center(data-modal="modal-2")
+        .modal__dialog.modal__dialog--md.modal--center__dialog(data-modal-el="dialog")
             .modal__header
                 h4.modal__title hello from Modal
                 .modal__close
@@ -33,7 +33,19 @@ block main
 
     button.btn.btn--green.btn--md(data-el="modal-load") Load Modal
 
+    .blackout.blackout--fade.loading-screen(data-el="loading-screen")
+        .loading-screen__spinner
+            .loader.loader--striped-bar
+
+
     script.
+        var modal;
+        
         document.querySelector('[data-el="modal-load"]').onclick = function () {
-            new Modal('modal.txt');
+            if (!modal) {
+                modal = new Solovey.Modal('modal.txt');
+            }
+            else {
+                modal.openModal();
+            }
         }

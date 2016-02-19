@@ -1,5 +1,5 @@
-<div data-el="modal-2" class="modal modal--fade modal--center">
-  <div data-el="modal-dialog" class="modal__dialog modal__dialog--md modal--center__dialog">
+<div data-el="modal-2" class="blackout blackout--fade modal modal--center">
+  <div data-modal-el="dialog" class="modal__dialog modal__dialog--md modal--center__dialog">
     <div class="modal__header">
       <h4 class="modal__title">hello from Loaded Modal</h4>
       <div class="modal__close">
