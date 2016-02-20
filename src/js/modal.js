@@ -235,5 +235,5 @@ class Modal extends Blackout {
 
 })();
 
-window.Solovey = window.Solovey || {};
-Solovey.Modal = Modal;
+window.Kvak = window.Kvak || {};
+Kvak.Modal = Modal;
