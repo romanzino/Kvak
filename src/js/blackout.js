@@ -46,3 +46,6 @@ export default class Blackout {
 		return transitionEndPromise;
 	}
 }
+
+window.Kvak = window.Kvak || {};
+Kvak.Blackout = Blackout;

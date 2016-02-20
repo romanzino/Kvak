@@ -126,8 +126,12 @@
 	
 		return Blackout;
 	}();
-
+	
 	exports.default = Blackout;
+	
+	
+	window.Kvak = window.Kvak || {};
+	Kvak.Blackout = Blackout;
 
 /***/ },
 /* 2 */
@@ -149,6 +153,9 @@
 	                                                                              * @module Loading Window
 	                                                                              * @copyright Roman Zino 2016
 	                                                                              */
+	
+	window.Kvak = window.Kvak || {};
+	Kvak.LoadingScreen = LoadingScreen;
 	
 	exports.default = LoadingScreen;
 

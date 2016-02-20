@@ -483,7 +483,7 @@ h6,
   display: flex;
 }
 .nav__link {
-  display: block;
+  display: inline-block;
   max-width: 100%;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -524,6 +524,7 @@ h6,
           flex-grow: 1;
 }
 .nav--expanded__link {
+  display: block;
   text-align: center;
 }
 .btn-group {
@@ -776,32 +777,33 @@ h6,
   position: fixed;
   top: 50%;
   left: 50%;
-  max-width: 50%;
+  max-width: 90%;
+  width: 31.25rem;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
 }
 .loader--striped-bar {
-  width: 500px;
-  height: 30px;
-  background-image: -webkit-repeating-linear-gradient(45deg, #8bc34a, #8bc34a 10px, #fff 10px, #fff 20px);
-  background-image: repeating-linear-gradient(45deg, #8bc34a, #8bc34a 10px, #fff 10px, #fff 20px);
-  background-size: 28px 30px;
+  height: 1.875rem;
+  background-color: #fff;
+  background-image: -webkit-repeating-linear-gradient(45deg, #8bc34a, #8bc34a 0.625rem, transparent 0.625rem, transparent 1.25rem);
+  background-image: repeating-linear-gradient(45deg, #8bc34a, #8bc34a 0.625rem, transparent 0.625rem, transparent 1.25rem);
+  background-size: 1.75rem 1.875rem;
   -webkit-animation: loader-striped-bar-animaton 3s linear infinite;
           animation: loader-striped-bar-animaton 3s linear infinite;
 }
 @-webkit-keyframes loader-striped-bar-animaton {
   from {
-    background-position: 28px 30px;
+    background-position: 1.75rem 1.875rem;
   }
   to {
-    background-position: 0px 30px;
+    background-position: 0 1.875rem;
   }
 }
 @keyframes loader-striped-bar-animaton {
   from {
-    background-position: 28px 30px;
+    background-position: 1.75rem 1.875rem;
   }
   to {
-    background-position: 0px 30px;
+    background-position: 0 1.875rem;
   }
 }
