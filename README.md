@@ -1,6 +1,6 @@
-#Solovey
+#Kvak
 
-Solovey is BEM based CSS framework written in Stylus.
+Kvak is BEM based CSS/JS framework written in Stylus.
 Now it is in the stage of development.
 
 ###Warning
