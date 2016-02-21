@@ -89,49 +89,53 @@
 		/**
 	  * Shows the screen
 	  * @public
-	  * @return {void}
+	  * @return {object} - DOM Element
 	  */
 	
 	
 		_createClass(Blackout, [{
 			key: 'show',
 			value: function show() {
+				var _this = this;
+	
 				this.$body.addClass('overflow-hidden');
 				this.$el.addClass(this.classNameOpened);
+	
+				//Wait for the transition
+				this.$el.one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', function () {
+					_this.$el.trigger('kvak.el.shown');
+				});
+	
+				return this.$el;
 			}
 	
 			/**
 	   * Hides the screen
 	   * @public
-	   * @return {object} - Promise
+	   * @return {object} - DOM Element
 	   */
 	
 		}, {
 			key: 'hide',
 			value: function hide() {
-				var _this = this;
+				var _this2 = this;
 	
-				var transitionEndPromise = new Promise(function (resolve, reject) {
-					_this.$el.removeClass(_this.classNameOpened);
-					//Wait for the transition
-					_this.$el.one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', function () {
-						_this.$body.removeClass('overflow-hidden');
-						resolve();
-					});
+				this.$el.removeClass(this.classNameOpened);
+	
+				//Wait for the transition
+				this.$el.one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', function () {
+					_this2.$body.removeClass('overflow-hidden');
+					_this2.$el.trigger('kvak.el.hidden');
 				});
 	
-				return transitionEndPromise;
+				return this.$el;
 			}
 		}]);
 	
 		return Blackout;
 	}();
-	
+
 	exports.default = Blackout;
-	
-	
-	window.Kvak = window.Kvak || {};
-	Kvak.Blackout = Blackout;
 
 /***/ }
 /******/ ]);

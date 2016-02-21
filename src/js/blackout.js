@@ -21,31 +21,34 @@ export default class Blackout {
 	/**
 	 * Shows the screen
 	 * @public
-	 * @return {void}
+	 * @return {object} - DOM Element
 	 */
 	show() {
 		this.$body.addClass('overflow-hidden');
 		this.$el.addClass(this.classNameOpened);
+		
+		//Wait for the transition
+		this.$el.one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', () => {
+			this.$el.trigger('kvak.el.shown');
+		});
+
+		return this.$el;
 	}
 
 	/**
 	 * Hides the screen
 	 * @public
-	 * @return {object} - Promise
+	 * @return {object} - DOM Element
 	 */
 	hide() {
-		let transitionEndPromise = new Promise((resolve, reject) => {
-			this.$el.removeClass(this.classNameOpened);
-			//Wait for the transition
-			this.$el.one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', () => {
-				this.$body.removeClass('overflow-hidden');
-				resolve();
-			});
+		this.$el.removeClass(this.classNameOpened);
+		
+		//Wait for the transition
+		this.$el.one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', () => {
+			this.$body.removeClass('overflow-hidden');
+			this.$el.trigger('kvak.el.hidden');
 		});
 
-		return transitionEndPromise;
+		return this.$el;
 	}
 }
-
-window.Kvak = window.Kvak || {};
-Kvak.Blackout = Blackout;

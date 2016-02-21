@@ -28,18 +28,14 @@ class Modal extends Blackout {
             
             LoadingScreen.show();
 
-            loadPromise.then((modalHTML) => {
-                
-                setTimeout(() => {
+            loadPromise
+                .success((modalHTML) => {
                     this.$el = this._addModal(modalHTML);
-                    let loadingScreenPromise = LoadingScreen.hide();
-
-                    loadingScreenPromise.then(() => this._initializeModal(open));
-                }, 10000);
-
-            }, () => {
-                throw new Error(`An error occurred while loading modal from ${parameter}`);
-            });
+                
+                    LoadingScreen.hide().on('kvak.el.hidden', () => this._initializeModal(open));
+                }).error(() => {
+                    throw new Error(`An error occurred while loading modal from ${parameter}`);
+                });
         }
         else {
             throw new Error('Wrong parameter for the Modal');
@@ -141,21 +137,11 @@ class Modal extends Blackout {
      * @return {object}
      */
     _loadModal(url) {
-        let loadPromise = new Promise((resolve, reject) => {
-            $.ajax({
-                url: url,
-                type: 'GET',
-                timeout: 10000,
-                success: (data) => {
-                    resolve(data);
-                },
-                error: () => {
-                    reject();
-                }
-            });
+        return $.ajax({
+            url: url,
+            type: 'GET',
+            timeout: 10000
         });
-
-        return loadPromise;
     }
 
     /**
