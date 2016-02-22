@@ -9,20 +9,20 @@
     z-index 20
     overflow auto
     background-color loading-screen-background
-    
-    &:not(&--fade)
-        display none
 
-    &--fade
-        if transition-enabled
+    if transition-enabled
+        &--fade
             transform translate(9999px)
             opacity 0
             transition opacity transition-time-md, transform 0s ease transition-time-md
+            
+    else
+        display none
 
     &--open
         transform translate(0, 0)
         
-        &:not(^[0]--fade)
+        if !transition-enabled
             display block
         
         &^[0]--fade

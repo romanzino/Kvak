@@ -676,9 +676,6 @@ h6,
   overflow: auto;
   background-color: rgba(0,0,0,0.7);
 }
-.blackout:not(.blackout--fade) {
-  display: none;
-}
 .blackout--fade {
   -webkit-transform: translate(9999px);
           transform: translate(9999px);
@@ -692,10 +689,6 @@ h6,
 .modal--open {
   -webkit-transform: translate(0, 0);
           transform: translate(0, 0);
-}
-.blackout--open:not(.blackout--fade),
-.modal--open:not(.modal--open--fade) {
-  display: block;
 }
 .blackout--open.blackout--fade,
 .modal--open.modal--open--fade {
