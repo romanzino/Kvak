@@ -52,3 +52,7 @@ export default class Blackout {
 		return this.$el;
 	}
 }
+
+
+window.Kvak = window.Kvak || {};
+Kvak.Blackout = Blackout;

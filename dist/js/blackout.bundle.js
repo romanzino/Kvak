@@ -134,8 +134,12 @@
 	
 		return Blackout;
 	}();
-
+	
 	exports.default = Blackout;
+	
+	
+	window.Kvak = window.Kvak || {};
+	Kvak.Blackout = Blackout;
 
 /***/ }
 /******/ ]);
