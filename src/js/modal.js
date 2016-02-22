@@ -31,8 +31,10 @@ class Modal extends Blackout {
             loadPromise
                 .success((modalHTML) => {
                     this.$el = this._addModal(modalHTML);
-                
-                    LoadingScreen.hide().on('kvak.el.hidden', () => this._initializeModal(open));
+
+                    LoadingScreen.getElement().on('kvak.el.hidden', () => this._initializeModal(open));
+                    LoadingScreen.hide();
+                    
                 }).error(() => {
                     throw new Error(`An error occurred while loading modal from ${parameter}`);
                 });
@@ -223,3 +225,5 @@ class Modal extends Blackout {
 
 window.Kvak = window.Kvak || {};
 Kvak.Modal = Modal;
+
+export default Modal;

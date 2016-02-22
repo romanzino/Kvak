@@ -44,12 +44,12 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(3);
+	module.exports = __webpack_require__(4);
 
 
 /***/ },
 /* 1 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
@@ -57,14 +57,18 @@
 		value: true
 	});
 	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @module Blackout Window
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * @copyright Roman Zino 2016
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+	
+	var _istransitionenabled = __webpack_require__(2);
+	
+	var _istransitionenabled2 = _interopRequireDefault(_istransitionenabled);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	/**
-	 * @module Blackout Window
-	 * @copyright Roman Zino 2016
-	 */
 	
 	var Blackout = function () {
 		/**
@@ -87,13 +91,24 @@
 		}
 	
 		/**
-	  * Shows the screen
-	  * @public
-	  * @return {object} - DOM Element
+	  * Returns current element
+	  * @return {object} DOM Element
 	  */
 	
 	
 		_createClass(Blackout, [{
+			key: 'getElement',
+			value: function getElement() {
+				return this.$el;
+			}
+	
+			/**
+	   * Shows the screen
+	   * @public
+	   * @return {object} - DOM Element
+	   */
+	
+		}, {
 			key: 'show',
 			value: function show() {
 				var _this = this;
@@ -101,10 +116,14 @@
 				this.$body.addClass('overflow-hidden');
 				this.$el.addClass(this.classNameOpened);
 	
-				//Wait for the transition
-				this.$el.one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', function () {
-					_this.$el.trigger('kvak.el.shown');
-				});
+				if ((0, _istransitionenabled2.default)(this.$el)) {
+					//Wait for the transition
+					this.$el.one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', function () {
+						_this.$el.trigger('kvak.el.shown');
+					});
+				} else {
+					this.$el.trigger('kvak.el.shown');
+				}
 	
 				return this.$el;
 			}
@@ -122,11 +141,15 @@
 	
 				this.$el.removeClass(this.classNameOpened);
 	
-				//Wait for the transition
-				this.$el.one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', function () {
-					_this2.$body.removeClass('overflow-hidden');
-					_this2.$el.trigger('kvak.el.hidden');
-				});
+				if ((0, _istransitionenabled2.default)(this.$el)) {
+					//Wait for the transition
+					this.$el.one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', function () {
+						_this2.$body.removeClass('overflow-hidden');
+						_this2.$el.trigger('kvak.el.hidden');
+					});
+				} else {
+					this.$el.trigger('kvak.el.hidden');
+				}
 	
 				return this.$el;
 			}
@@ -135,14 +158,35 @@
 		return Blackout;
 	}();
 	
-	exports.default = Blackout;
-	
-	
 	window.Kvak = window.Kvak || {};
 	Kvak.Blackout = Blackout;
+	
+	exports.default = Blackout;
 
 /***/ },
 /* 2 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	/**
+	 * Checks is transition enabled for current element
+	 * @param  {object}  $el - DOM element
+	 * @return {Boolean}
+	 */
+	function isTransitionEnabled($el) {
+	  var transitionDuration = parseFloat($el.css('transition-duration'));
+	
+	  return transitionDuration > 0 ? true : false;
+	}
+	
+	exports.default = isTransitionEnabled;
+
+/***/ },
+/* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -168,10 +212,14 @@
 	exports.default = LoadingScreen;
 
 /***/ },
-/* 3 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
 	
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 	
@@ -179,7 +227,7 @@
 	
 	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 	
-	var _loadingscreen = __webpack_require__(2);
+	var _loadingscreen = __webpack_require__(3);
 	
 	var _loadingscreen2 = _interopRequireDefault(_loadingscreen);
 	
@@ -228,9 +276,10 @@
 	            loadPromise.success(function (modalHTML) {
 	                _this.$el = _this._addModal(modalHTML);
 	
-	                _loadingscreen2.default.hide().on('kvak.el.hidden', function () {
+	                _loadingscreen2.default.getElement().on('kvak.el.hidden', function () {
 	                    return _this._initializeModal(open);
 	                });
+	                _loadingscreen2.default.hide();
 	            }).error(function () {
 	                throw new Error('An error occurred while loading modal from ' + parameter);
 	            });
@@ -450,6 +499,8 @@
 	
 	window.Kvak = window.Kvak || {};
 	Kvak.Modal = Modal;
+	
+	exports.default = Modal;
 
 /***/ }
 /******/ ]);

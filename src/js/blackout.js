@@ -3,7 +3,9 @@
  * @copyright Roman Zino 2016
  */
 
-export default class Blackout {
+import isTransitionEnabled from './helpers/istransitionenabled';
+
+class Blackout {
 	/**
 	 * @constructor
 	 * @param {object|null} $el - DOM Element
@@ -19,6 +21,14 @@ export default class Blackout {
 	}
 
 	/**
+	 * Returns current element
+	 * @return {object} DOM Element
+	 */
+	getElement() {
+		return this.$el;
+	}
+
+	/**
 	 * Shows the screen
 	 * @public
 	 * @return {object} - DOM Element
@@ -27,10 +37,15 @@ export default class Blackout {
 		this.$body.addClass('overflow-hidden');
 		this.$el.addClass(this.classNameOpened);
 		
-		//Wait for the transition
-		this.$el.one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', () => {
+		if (isTransitionEnabled(this.$el)) {
+			//Wait for the transition
+			this.$el.one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', () => {
+				this.$el.trigger('kvak.el.shown');
+			});
+		}
+		else {
 			this.$el.trigger('kvak.el.shown');
-		});
+		}
 
 		return this.$el;
 	}
@@ -43,16 +58,22 @@ export default class Blackout {
 	hide() {
 		this.$el.removeClass(this.classNameOpened);
 		
-		//Wait for the transition
-		this.$el.one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', () => {
-			this.$body.removeClass('overflow-hidden');
+		if (isTransitionEnabled(this.$el)) {
+			//Wait for the transition
+			this.$el.one('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', () => {
+				this.$body.removeClass('overflow-hidden');
+				this.$el.trigger('kvak.el.hidden');
+			});
+		}
+		else {
 			this.$el.trigger('kvak.el.hidden');
-		});
+		}
 
 		return this.$el;
 	}
 }
 
-
 window.Kvak = window.Kvak || {};
 Kvak.Blackout = Blackout;
+
+export default Blackout;
