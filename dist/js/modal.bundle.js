@@ -382,61 +382,67 @@
 	    return Modal;
 	}(_blackout2.default);
 	
-	(function () {
-	    var initializedModals = new Map();
+	{
+	    (function () {
 	
-	    /**
-	     * Open the modal when user clicking on the modal toggle
-	     */
-	    $('[data-open*="modal"]').click(function (event) {
-	        var modalID = getModalID(event.target);
-	        var initializedModal = initializedModals.get(modalID);
+	        /**
+	         * Gets modal's ID in the DOM
+	         * @param  {object} target
+	         * @return {string}
+	         */
 	
-	        if (!initializedModal) {
-	            /**
-	             * The modal we should open
-	             * @type {object}
-	             */
-	            var $modal = $('[data-modal="' + modalID + '"]');
+	        var getModalID = function getModalID(target) {
+	            var $target = $(target);
+	            var modalID = $target.attr('data-open');
 	
-	            if ($modal.length > 1) {
-	                throw new Error('There is a couple modals with the same ID = ' + modalID + ' !');
-	            } else if ($modal.length < 1) {
-	                console.info('There is no the modal with the ID = ' + modalID + ' !');
+	            return modalID;
+	        };
+	
+	        /**
+	         * Creates the new modal
+	         * @param  {string} modalID
+	         * @param  {object} $modal
+	         * @return {object}
+	         */
+	
+	
+	        var initializeModal = function initializeModal(modalID, $modal) {
+	            var modal = new Modal($modal);
+	
+	            return initializedModals.set(modalID, modal);
+	        };
+	
+	        var initializedModals = new Map();
+	
+	        /**
+	         * Open the modal when user clicking on the modal toggle
+	         */
+	        $('[data-open*="modal"]').click(function (event) {
+	            var modalID = getModalID(event.target);
+	            var initializedModal = initializedModals.get(modalID);
+	
+	            if (!initializedModal) {
+	                /**
+	                 * The modal we should open
+	                 * @type {object}
+	                 */
+	                var $modal = $('[data-modal="' + modalID + '"]');
+	
+	                if ($modal.length > 1) {
+	                    throw new Error('There is a couple modals with the same ID = ' + modalID + ' !');
+	                } else if ($modal.length < 1) {
+	                    console.info('There is no the modal with the ID = ' + modalID + ' !');
+	                } else {
+	                    initializeModal(modalID, $modal);
+	                }
 	            } else {
-	                initializeModal(modalID, $modal);
+	                initializedModal.openModal();
 	            }
-	        } else {
-	            initializedModal.openModal();
-	        }
 	
-	        event.preventDefault();
-	    });
-	
-	    /**
-	     * Gets modal's ID in the DOM
-	     * @param  {object} target
-	     * @return {string}
-	     */
-	    function getModalID(target) {
-	        var $target = $(target);
-	        var modalID = $target.attr('data-open');
-	
-	        return modalID;
-	    }
-	
-	    /**
-	     * Creates the new modal
-	     * @param  {string} modalID
-	     * @param  {object} $modal
-	     * @return {object}
-	     */
-	    function initializeModal(modalID, $modal) {
-	        var modal = new Modal($modal);
-	
-	        return initializedModals.set(modalID, modal);
-	    }
-	})();
+	            event.preventDefault();
+	        });
+	    })();
+	}
 	
 	window.Kvak = window.Kvak || {};
 	Kvak.Modal = Modal;

@@ -161,7 +161,7 @@ class Modal extends Blackout {
     }
 }
 
-(function () {
+{
     let initializedModals = new Map();
 
     /**
@@ -219,7 +219,7 @@ class Modal extends Blackout {
         return initializedModals.set(modalID, modal);
     }
 
-})();
+}
 
 window.Kvak = window.Kvak || {};
 Kvak.Modal = Modal;
